@@ -59,7 +59,7 @@ def predict_game(mod_result_face, mod_result_back, home, away):
    points_face = mod_result_face(working_df, home, away)
    points_back = mod_result_back(working_df, home, away)
 
-   sum0 = points_face[0] + points_back[1]
+   sum0 = points_face[0] + points_back[0]
    sum1 = points_face[1] + points_back[1]
    sum2 = points_face[2] + points_back[2]
 
@@ -83,8 +83,8 @@ for row in eval_df:
    check.append(predict_game(mod_result_face, mod_result_back, eval_home, eval_away))
 eval_df = pd.DataFrame(eval_df)
 eval_df["pred"] = check
-eval_df["correct_sc"] = (eval_df["FTR"] == eval_df["pred"]).astype(int)
-
+eval_df["correct_sc"] = (eval_df["FTR"] == eval_df["pred"]) |( eval_df["FTR"] == 'D').astype(int)
+print(eval_df)
 
 n     = len(eval_df)
 ones  = int(eval_df["correct_sc"].sum())
