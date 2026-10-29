@@ -1,0 +1,11 @@
+{
+  "generated": "2026-10-30T18:35:00Z",
+  "model": "sample-data",
+  "fixtures": [
+    {"date":"2026-10-31","time":"12:30","home":"Arsenal","away":"Chelsea","p_home":0.52,"p_draw":0.26,"p_away":0.22},
+    {"date":"2026-10-31","time":"15:00","home":"Man City","away":"Newcastle","p_home":0.64,"p_draw":0.21,"p_away":0.15},
+    {"date":"2026-10-31","time":"17:30","home":"Brighton","away":"Liverpool","p_home":0.24,"p_draw":0.27,"p_away":0.49},
+    {"date":"2026-11-01","time":"14:00","home":"Aston Villa","away":"Everton","p_home":0.46,"p_draw":0.30,"p_away":0.24},
+    {"date":"2026-11-01","time":"16:30","home":"Tottenham","away":"Man United","p_home":0.38,"p_draw":0.28,"p_away":0.34}
+  ]
+}

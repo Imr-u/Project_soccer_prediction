@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premier League predictions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g1:#1f6f3b; --g2:#1a6335;
+  --paper:#f8f8f2; --ink:#14261b; --soft:#5b6f61; --line:#dde2d6;
+  --chalk:#f4f6ef;
+  --home:#2347d0; --draw:#d9dcd2; --away:#ff7a1a;
+  --ok:#1b8a4a; --bad:#c23b22;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --g1:#124a29; --g2:#0f4024;
+    --paper:#0d2517; --ink:#eef3ea; --soft:#9db4a5; --line:#1d3d2a;
+    --draw:#3d5546; --ok:#5fd68c; --bad:#ff8a73;
+  }
+  .d{color:#eef3ea}
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; min-height:100vh;
+  font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.5; color:var(--chalk);
+  background:repeating-linear-gradient(90deg,var(--g1) 0 72px,var(--g2) 72px 144px);
+}
+main{max-width:720px; margin:0 auto; padding:40px 16px 56px}
+h1{font-size:clamp(2.2rem,8vw,3.6rem); line-height:1.02; font-weight:800; letter-spacing:-.025em; margin:0 0 12px}
+h2{font-size:1.5rem; font-weight:800; letter-spacing:-.01em; margin:44px 0 14px}
+h3{font-size:1rem; font-weight:600; margin:22px 0 8px; opacity:.9}
+.lede{max-width:34em; margin:0; font-size:1.1rem; opacity:.92}
+.updated{margin:10px 0 0; font-size:.9rem; opacity:.75}
+.sample{display:inline-block; margin:18px 0 0; padding:6px 12px; border:2px dashed var(--chalk); border-radius:6px; font-size:.9rem}
+.card{background:var(--paper); color:var(--ink); border-radius:8px; padding:16px; margin:0 0 12px}
+.teams{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:baseline; margin-bottom:12px}
+.teams b{font-size:1.15rem; font-weight:800; letter-spacing:-.01em; line-height:1.15}
+.teams b:last-child{text-align:right}
+.teams time{font-size:.85rem; color:var(--soft)}
+.bar{display:flex; gap:2px; height:52px; border-radius:6px; overflow:hidden; animation:reveal .9s cubic-bezier(.2,.7,.2,1) both}
+.bar span{flex:var(--p) 1 0; min-width:0; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.15rem; font-variant-numeric:tabular-nums}
+.h{background:var(--home); color:#fff}
+.d{background:var(--draw); color:var(--ink)}
+.a{background:var(--away); color:#1a0f00}
+.pick{margin:10px 0 0; font-size:.92rem; color:var(--soft)}
+.pick b{color:var(--ink)}
+.summary{font-size:1.2rem; line-height:1.4}
+.summary p{margin:0 0 10px}
+.summary p:last-child{margin:0; font-size:.95rem; color:var(--soft)}
+.row{display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center; padding:12px 0; border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row .when{font-size:.85rem; color:var(--soft); min-width:3.6em}
+.row .match{font-weight:600}
+.row .match small{display:block; font-weight:400; font-size:.85rem; color:var(--soft)}
+.mark{font-weight:800; font-size:1.3rem}
+.mark.yes{color:var(--ok)} .mark.no{color:var(--bad)}
+.note{padding:16px; border:2px dashed var(--chalk); border-radius:8px; opacity:.95}
+footer{margin-top:48px; font-size:.85rem; opacity:.75}
+@keyframes reveal{from{clip-path:inset(0 100% 0 0)} to{clip-path:inset(0)}}
+@media (prefers-reduced-motion: reduce){.bar{animation:none}}
+:focus-visible{outline:3px solid var(--away); outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Who wins this weekend?</h1>
+  <p class="lede">Premier League predictions from a model I'm building from scratch. New matches are added every Tuesday and Friday.</p>
+  <p class="updated" id="updated"></p>
+  <div id="sample" class="sample" hidden>Sample data. Real predictions appear here once the model is connected.</div>
+
+  <h2>Next matches</h2>
+  <div id="upcoming"><p class="note">Loading predictions…</p></div>
+
+  <h2>How the model is doing</h2>
+  <div id="record"></div>
+
+  <footer>Probabilities are estimates from a learning project, not betting advice.</footer>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const pc = p => Math.round(p * 100);
+const day = (iso, opts) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { timeZone: "UTC", ...opts });
+const load = async f => { const r = await fetch(f, { cache: "no-store" }); if (!r.ok) throw new Error(f); return r.json(); };
+
+function pickOf(m) {
+  const best = Math.max(m.p_home, m.p_draw, m.p_away);
+  if (best === m.p_home) return { key: "H", label: m.home, p: best };
+  if (best === m.p_away) return { key: "A", label: m.away, p: best };
+  return { key: "D", label: "a draw", p: best };
+}
+
+function bar(m) {
+  const b = el("div", "bar");
+  [["h", m.p_home], ["d", m.p_draw], ["a", m.p_away]].forEach(([cls, p]) => {
+    const s = el("span", cls, p >= 0.08 ? pc(p) + "%" : "");
+    s.style.setProperty("--p", p);
+    s.title = pc(p) + "%";
+    b.append(s);
+  });
+  return b;
+}
+
+function renderUpcoming(data) {
+  const box = $("#upcoming"); box.replaceChildren();
+  if (!data.fixtures.length) {
+    box.append(el("p", "note", "No upcoming matches right now. The next batch usually appears on Tuesday or Friday."));
+    return;
+  }
+  let last = "";
+  data.fixtures.forEach(m => {
+    if (m.date !== last) { box.append(el("h3", null, day(m.date, { weekday: "long", day: "numeric", month: "long" }))); last = m.date; }
+    const card = el("article", "card");
+    const t = el("div", "teams");
+    t.append(el("b", null, m.home), el("time", null, m.time || "v"), el("b", null, m.away));
+    const pk = pickOf(m);
+    const line = el("p", "pick"); line.append("Model picks ", el("b", null, pk.label), " at " + pc(pk.p) + "%");
+    card.append(t, bar(m), line);
+    box.append(card);
+  });
+}
+
+function renderRecord(h) {
+  const box = $("#record"); box.replaceChildren();
+  const s = h.summary;
+  if (!s || !s.matches) {
+    box.append(el("p", "note", "No scored predictions yet. Results appear here after the first predicted matches are played."));
+    return;
+  }
+  const right = Math.round(s.hit_rate * s.matches);
+  const sum = el("div", "card summary");
+  sum.append(el("p", null, `The model has called ${right} of ${s.matches} matches right (${pc(s.hit_rate)}%).`));
+  const beating = s.log_loss < s.baseline_log_loss;
+  sum.append(el("p", null, `Its log loss is ${s.log_loss.toFixed(2)}. Guessing the league averages every time scores ${s.baseline_log_loss.toFixed(2)}, so it is ${beating ? "beating" : "not yet beating"} that. Lower is better.`));
+  box.append(sum);
+
+  const list = el("div", "card");
+  h.matches.forEach(m => {
+    const pk = pickOf(m), ok = pk.key === m.result;
+    const row = el("div", "row");
+    const mt = el("div", "match", `${m.home} ${m.score.replace("-", "–")} ${m.away}`);
+    mt.append(el("small", null, `Picked ${pk.label} at ${pc(pk.p)}%`));
+    const mark = el("span", "mark " + (ok ? "yes" : "no"), ok ? "✓" : "✗");
+    mark.setAttribute("aria-label", ok ? "Correct" : "Wrong");
+    row.append(el("span", "when", day(m.date, { day: "numeric", month: "short" })), mt, mark);
+    list.append(row);
+  });
+  box.append(list);
+}
+
+(async () => {
+  try {
+    const p = await load("predictions.json");
+    renderUpcoming(p);
+    if (p.generated) $("#updated").textContent = "Updated " + new Date(p.generated).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" }) + " UTC";
+    if (p.model === "sample-data") $("#sample").hidden = false;
+  } catch (e) {
+    $("#upcoming").replaceChildren(el("p", "note", "Couldn't load predictions. Refresh the page in a minute."));
+  }
+  try { renderRecord(await load("history.json")); }
+  catch (e) { $("#record").replaceChildren(el("p", "note", "Couldn't load the track record. Refresh the page in a minute.")); }
+})();
+</script>
+</body>
+</html>

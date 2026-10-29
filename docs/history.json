@@ -1,0 +1,12 @@
+{
+  "generated": "2026-10-30T18:35:00Z",
+  "summary": {"matches": 6, "hit_rate": 0.67, "log_loss": 0.91, "baseline_log_loss": 1.03},
+  "matches": [
+    {"date":"2026-10-25","home":"Liverpool","away":"Everton","p_home":0.62,"p_draw":0.22,"p_away":0.16,"score":"2-0","result":"H"},
+    {"date":"2026-10-25","home":"Man United","away":"Leeds","p_home":0.55,"p_draw":0.25,"p_away":0.20,"score":"1-1","result":"D"},
+    {"date":"2026-10-24","home":"Brighton","away":"Newcastle","p_home":0.30,"p_draw":0.28,"p_away":0.42,"score":"0-2","result":"A"},
+    {"date":"2026-10-24","home":"Tottenham","away":"Aston Villa","p_home":0.48,"p_draw":0.26,"p_away":0.26,"score":"3-1","result":"H"},
+    {"date":"2026-10-18","home":"Fulham","away":"Brentford","p_home":0.45,"p_draw":0.28,"p_away":0.27,"score":"1-2","result":"A"},
+    {"date":"2026-10-17","home":"Wolves","away":"Burnley","p_home":0.50,"p_draw":0.27,"p_away":0.23,"score":"2-1","result":"H"}
+  ]
+}
