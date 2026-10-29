@@ -1,0 +1,59 @@
+name: Update data
+
+on:
+  schedule:
+    - cron: "0 6 * * *"     # daily: pick up last night's results
+    - cron: "30 18 * * 5"   # Friday: weekend fixtures + odds
+    - cron: "0 14 * * 2"    # Tuesday: midweek fixtures + odds
+  workflow_dispatch:         # manual "Run workflow" button
+
+permissions:
+  contents: write
+
+# Never let two runs commit at the same time.
+concurrency:
+  group: data-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Each step may fail without stopping the next one; the job is marked
+      # failed at the end so you still get a red X and an email.
+      - name: Update results
+        id: results
+        continue-on-error: true
+        run: python pipeline/update_results.py
+
+      - name: Update fixtures
+        id: fixtures
+        continue-on-error: true
+        run: python pipeline/update_fixtures.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add alpha_source
+          [ -d data ] && git add data || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "data: update results and fixtures"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Fail the job if a step failed
+        if: steps.results.outcome == 'failure' || steps.fixtures.outcome == 'failure'
+        run: |
+          echo "results: ${{ steps.results.outcome }}, fixtures: ${{ steps.fixtures.outcome }}"
+          exit 1
