@@ -1,0 +1,82 @@
+{
+  "generated": "2026-11-08T05:40:32Z",
+  "model": "baseline-v1",
+  "line": 4.5,
+  "picks_per_week": 5,
+  "summary": {
+    "weeks_won": 0,
+    "weeks_lost": 0,
+    "weeks_pending": 1,
+    "weeks_void": 0,
+    "win_rate": null
+  },
+  "backtest": {
+    "since": "2022-2023",
+    "weeks": 151,
+    "model_weeks_won_pct": 43.0,
+    "random_weeks_won_pct": 41.3,
+    "model_picks_under_pct": 84.6,
+    "random_picks_under_pct": 83.7
+  },
+  "weeks": [
+    {
+      "id": "2026-11-06",
+      "model": "baseline-v1",
+      "announced_at": "2026-11-08T05:40:32Z",
+      "status": "pending",
+      "games_total": 10,
+      "picks": [
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "home": "Sunderland",
+          "away": "Chelsea",
+          "exp_goals": 2.706,
+          "p_under": 0.862,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-08",
+          "time": "16:30",
+          "home": "Man United",
+          "away": "Aston Villa",
+          "exp_goals": 2.888,
+          "p_under": 0.8338,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "home": "Crystal Palace",
+          "away": "Liverpool",
+          "exp_goals": 2.905,
+          "p_under": 0.831,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "home": "Brighton",
+          "away": "Brentford",
+          "exp_goals": 2.929,
+          "p_under": 0.827,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "home": "Ipswich",
+          "away": "Bournemouth",
+          "exp_goals": 3.048,
+          "p_under": 0.8071,
+          "result": "pending",
+          "score": null
+        }
+      ]
+    }
+  ]
+}
