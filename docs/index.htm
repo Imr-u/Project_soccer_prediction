@@ -3,169 +3,135 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Premier League predictions</title>
+<title>The five safest games this week</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --g1:#1f6f3b; --g2:#1a6335;
-  --paper:#f8f8f2; --ink:#14261b; --soft:#5b6f61; --line:#dde2d6;
-  --chalk:#f4f6ef;
-  --home:#2347d0; --draw:#d9dcd2; --away:#ff7a1a;
-  --ok:#1b8a4a; --bad:#c23b22;
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    --g1:#124a29; --g2:#0f4024;
-    --paper:#0d2517; --ink:#eef3ea; --soft:#9db4a5; --line:#1d3d2a;
-    --draw:#3d5546; --ok:#5fd68c; --bad:#ff8a73;
-  }
-  .d{color:#eef3ea}
-}
+:root{--g1:#1f6f3b;--g2:#1a6335;--paper:#f8f8f2;--ink:#14261b;--soft:#5b6f61;--line:#dde2d6;--chalk:#f4f6ef;--blue:#2347d0;--track:#dfe3d8;--win:#1b8a4a;--loss:#c23b22;--wait:#8b9a90}
+@media (prefers-color-scheme:dark){:root{--g1:#124a29;--g2:#0f4024;--paper:#0d2517;--ink:#eef3ea;--soft:#9db4a5;--line:#1d3d2a;--track:#24402f;--win:#4fcf83;--loss:#ff8a73;--wait:#7d9486}}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0; min-height:100vh;
-  font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
-  font-size:16px; line-height:1.5; color:var(--chalk);
-  background:repeating-linear-gradient(90deg,var(--g1) 0 72px,var(--g2) 72px 144px);
-}
-main{max-width:720px; margin:0 auto; padding:40px 16px 56px}
-h1{font-size:clamp(2.2rem,8vw,3.6rem); line-height:1.02; font-weight:800; letter-spacing:-.025em; margin:0 0 12px}
-h2{font-size:1.5rem; font-weight:800; letter-spacing:-.01em; margin:44px 0 14px}
-h3{font-size:1rem; font-weight:600; margin:22px 0 8px; opacity:.9}
-.lede{max-width:34em; margin:0; font-size:1.1rem; opacity:.92}
-.updated{margin:10px 0 0; font-size:.9rem; opacity:.75}
-.sample{display:inline-block; margin:18px 0 0; padding:6px 12px; border:2px dashed var(--chalk); border-radius:6px; font-size:.9rem}
-.card{background:var(--paper); color:var(--ink); border-radius:8px; padding:16px; margin:0 0 12px}
-.teams{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:baseline; margin-bottom:12px}
-.teams b{font-size:1.15rem; font-weight:800; letter-spacing:-.01em; line-height:1.15}
-.teams b:last-child{text-align:right}
-.teams time{font-size:.85rem; color:var(--soft)}
-.bar{display:flex; gap:2px; height:52px; border-radius:6px; overflow:hidden; animation:reveal .9s cubic-bezier(.2,.7,.2,1) both}
-.bar span{flex:var(--p) 1 0; min-width:0; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.15rem; font-variant-numeric:tabular-nums}
-.h{background:var(--home); color:#fff}
-.d{background:var(--draw); color:var(--ink)}
-.a{background:var(--away); color:#1a0f00}
-.pick{margin:10px 0 0; font-size:.92rem; color:var(--soft)}
-.pick b{color:var(--ink)}
-.summary{font-size:1.2rem; line-height:1.4}
-.summary p{margin:0 0 10px}
-.summary p:last-child{margin:0; font-size:.95rem; color:var(--soft)}
-.row{display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center; padding:12px 0; border-top:1px solid var(--line)}
-.row:first-child{border-top:0}
-.row .when{font-size:.85rem; color:var(--soft); min-width:3.6em}
-.row .match{font-weight:600}
-.row .match small{display:block; font-weight:400; font-size:.85rem; color:var(--soft)}
-.mark{font-weight:800; font-size:1.3rem}
-.mark.yes{color:var(--ok)} .mark.no{color:var(--bad)}
-.note{padding:16px; border:2px dashed var(--chalk); border-radius:8px; opacity:.95}
-footer{margin-top:48px; font-size:.85rem; opacity:.75}
-@keyframes reveal{from{clip-path:inset(0 100% 0 0)} to{clip-path:inset(0)}}
-@media (prefers-reduced-motion: reduce){.bar{animation:none}}
-:focus-visible{outline:3px solid var(--away); outline-offset:2px}
+body{margin:0;min-height:100vh;font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;color:var(--chalk);background:repeating-linear-gradient(90deg,var(--g1) 0 72px,var(--g2) 72px 144px)}
+main{max-width:720px;margin:0 auto;padding:40px 16px 56px}
+h1{font-size:clamp(2.2rem,8vw,3.6rem);line-height:1.02;font-weight:800;letter-spacing:-.025em;margin:0 0 12px}
+h2{font-size:1.5rem;font-weight:800;letter-spacing:-.01em;margin:44px 0 14px}
+.lede{max-width:34em;margin:0;font-size:1.1rem;opacity:.92}
+.meta{margin:12px 0 0;font-size:.9rem;opacity:.8}
+.card{background:var(--paper);color:var(--ink);border-radius:8px;padding:16px;margin:0 0 12px}
+.banner{display:inline-block;margin:0 0 14px;padding:6px 12px;border-radius:6px;font-weight:600;color:#fff;background:var(--wait)}
+.banner.won{background:var(--win)}.banner.lost{background:var(--loss)}
+.teams{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:baseline;margin-bottom:12px}
+.teams b{font-size:1.15rem;font-weight:800;letter-spacing:-.01em;line-height:1.15}.teams b:last-child{text-align:right}
+.teams span{font-size:.85rem;color:var(--soft)}
+.track{height:44px;border-radius:6px;background:var(--track);overflow:hidden;animation:reveal .9s cubic-bezier(.2,.7,.2,1) both}
+.fill{display:flex;align-items:center;height:100%;padding-left:12px;background:var(--blue);color:#fff;font-weight:800;font-size:1.1rem}
+.sub{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:.92rem;color:var(--soft)}
+.res{font-weight:800}.res.under{color:var(--win)}.res.over{color:var(--loss)}
+.score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.score p{margin:0}.big{font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.03em}
+.strip{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{min-width:62px;padding:6px 8px;border-radius:6px;text-align:center;font-size:.85rem;font-weight:600;color:#fff;background:var(--wait)}
+.chip.won{background:var(--win)}.chip.lost{background:var(--loss)}
+.chip.practice{background:transparent;color:var(--soft);border:2px dashed var(--soft)}
+details.week{border-top:1px solid var(--line);padding:10px 0}details.week:first-of-type{border-top:0}
+details.week summary{cursor:pointer;display:flex;justify-content:space-between;gap:12px;font-weight:600}
+.row{display:flex;justify-content:space-between;gap:12px;padding:6px 0 0;font-size:.95rem}
+.note{padding:16px;border:2px dashed var(--chalk);border-radius:8px}
+.small{font-size:.9rem;opacity:.85;margin:14px 0 0}
+footer{margin-top:48px;font-size:.85rem;opacity:.75}
+@keyframes reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+@media (prefers-reduced-motion:reduce){.track{animation:none}}
+:focus-visible{outline:3px solid #ff7a1a;outline-offset:2px}
 </style>
 </head>
 <body>
 <main>
-  <h1>Who wins this weekend?</h1>
-  <p class="lede">Premier League predictions from a model I'm building from scratch. New matches are added every Tuesday and Friday.</p>
-  <p class="updated" id="updated"></p>
-  <div id="sample" class="sample" hidden>Sample data. Real predictions appear here once the model is connected.</div>
+  <h1>The five safest games this week</h1>
+  <p class="lede">Each round I pick the five Premier League games least likely to have 5 or more goals. A week counts as a win only if all five finish under 4.5 goals.</p>
+  <p class="meta" id="meta"></p>
 
-  <h2>Next matches</h2>
-  <div id="upcoming"><p class="note">Loading predictions…</p></div>
+  <h2 id="now-title">This week's picks</h2>
+  <div id="now"><p class="note">Loading…</p></div>
 
-  <h2>How the model is doing</h2>
+  <h2>The record</h2>
   <div id="record"></div>
 
-  <footer>Probabilities are estimates from a learning project, not betting advice.</footer>
+  <footer>A learning project, not betting advice. Picks are announced before kickoff and never changed.</footer>
 </main>
-
 <script>
-const $ = s => document.querySelector(s);
-const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
-const pc = p => Math.round(p * 100);
-const day = (iso, opts) => new Date(iso + "T12:00:00Z").toLocaleDateString("en-GB", { timeZone: "UTC", ...opts });
-const load = async f => { const r = await fetch(f, { cache: "no-store" }); if (!r.ok) throw new Error(f); return r.json(); };
+const $=s=>document.querySelector(s);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const day=(iso,o)=>new Date(iso+"T12:00:00Z").toLocaleDateString("en-GB",{timeZone:"UTC",...o});
+const pc=p=>Math.round(p*100);
+const LABEL={won:"Won, +1",lost:"Lost",pending:"In progress",void:"Void"};
+const counted=w=>w.counted!==false;
+const fs=s=>s.replace("-","–");
+const mark=p=>p.result==="pending"?el("span",null,day(p.date,{weekday:"short"})+" "+p.time):
+  p.result==="void"?el("span",null,"Postponed"):
+  el("span","res "+p.result,(p.result==="under"?"✓ ":"✗ ")+fs(p.score));
 
-function pickOf(m) {
-  const best = Math.max(m.p_home, m.p_draw, m.p_away);
-  if (best === m.p_home) return { key: "H", label: m.home, p: best };
-  if (best === m.p_away) return { key: "A", label: m.away, p: best };
-  return { key: "D", label: "a draw", p: best };
+function pickCard(p){
+  const c=el("article","card"),t=el("div","teams");
+  t.append(el("b",null,p.home),el("span",null,"v"),el("b",null,p.away));
+  const tr=el("div","track"),f=el("div","fill",pc(p.p_under)+"%");
+  f.style.width=Math.max(pc(p.p_under),12)+"%";tr.append(f);
+  const sub=el("div","sub");sub.append(el("span",null,"Chance of under 4.5 goals"),mark(p));
+  c.append(t,tr,sub);return c;
 }
 
-function bar(m) {
-  const b = el("div", "bar");
-  [["h", m.p_home], ["d", m.p_draw], ["a", m.p_away]].forEach(([cls, p]) => {
-    const s = el("span", cls, p >= 0.08 ? pc(p) + "%" : "");
-    s.style.setProperty("--p", p);
-    s.title = pc(p) + "%";
-    b.append(s);
+function renderNow(w){
+  const box=$("#now");box.replaceChildren();
+  if(!w){box.append(el("p","note","The first picks appear here after the next Tuesday or Friday update."));return;}
+  $("#now-title").textContent=w.status==="pending"?"This week's picks":"Latest picks";
+  box.append(el("p","banner "+w.status,LABEL[w.status]+(counted(w)?"":" · practice week")));
+  if(!counted(w))box.append(el("p","small","Only these five games were left when the picks went out, so there was no choice to make. This week isn't counted in the record."));
+  w.picks.forEach(p=>box.append(pickCard(p)));
+}
+
+function renderRecord(d){
+  const box=$("#record");box.replaceChildren();
+  const ws=d.weeks.filter(counted);
+  const won=ws.filter(w=>w.status==="won").length,lost=ws.filter(w=>w.status==="lost").length;
+  const fin=won+lost,wait=ws.filter(w=>w.status==="pending").length;
+  const card=el("div","card"),s=el("div","score");
+  s.append(el("span","big",String(won)),el("p",null,fin?`${won===1?"week":"weeks"} won out of ${fin} finished (${pc(won/fin)}%)`:"weeks won so far. No week has finished yet."));
+  card.append(s);
+  if(wait)card.append(el("p","small",`${wait} in progress.`));
+  const strip=el("div","strip");
+  d.weeks.slice().reverse().forEach(w=>{
+    const label=day(w.picks[0].date,{day:"numeric",month:"short"});
+    const ch=el("span","chip "+(counted(w)?w.status:"practice"),w.status==="won"&&counted(w)?label+" +1":label);
+    ch.title=LABEL[w.status];strip.append(ch);
   });
-  return b;
-}
+  card.append(strip);box.append(card);
 
-function renderUpcoming(data) {
-  const box = $("#upcoming"); box.replaceChildren();
-  if (!data.fixtures.length) {
-    box.append(el("p", "note", "No upcoming matches right now. The next batch usually appears on Tuesday or Friday."));
-    return;
-  }
-  let last = "";
-  data.fixtures.forEach(m => {
-    if (m.date !== last) { box.append(el("h3", null, day(m.date, { weekday: "long", day: "numeric", month: "long" }))); last = m.date; }
-    const card = el("article", "card");
-    const t = el("div", "teams");
-    t.append(el("b", null, m.home), el("time", null, m.time || "v"), el("b", null, m.away));
-    const pk = pickOf(m);
-    const line = el("p", "pick"); line.append("Model picks ", el("b", null, pk.label), " at " + pc(pk.p) + "%");
-    card.append(t, bar(m), line);
-    box.append(card);
-  });
-}
-
-function renderRecord(h) {
-  const box = $("#record"); box.replaceChildren();
-  const s = h.summary;
-  if (!s || !s.matches) {
-    box.append(el("p", "note", "No scored predictions yet. Results appear here after the first predicted matches are played."));
-    return;
-  }
-  const right = Math.round(s.hit_rate * s.matches);
-  const sum = el("div", "card summary");
-  sum.append(el("p", null, `The model has called ${right} of ${s.matches} matches right (${pc(s.hit_rate)}%).`));
-  const beating = s.log_loss < s.baseline_log_loss;
-  sum.append(el("p", null, `Its log loss is ${s.log_loss.toFixed(2)}. Guessing the league averages every time scores ${s.baseline_log_loss.toFixed(2)}, so it is ${beating ? "beating" : "not yet beating"} that. Lower is better.`));
-  box.append(sum);
-
-  const list = el("div", "card");
-  h.matches.forEach(m => {
-    const pk = pickOf(m), ok = pk.key === m.result;
-    const row = el("div", "row");
-    const mt = el("div", "match", `${m.home} ${m.score.replace("-", "–")} ${m.away}`);
-    mt.append(el("small", null, `Picked ${pk.label} at ${pc(pk.p)}%`));
-    const mark = el("span", "mark " + (ok ? "yes" : "no"), ok ? "✓" : "✗");
-    mark.setAttribute("aria-label", ok ? "Correct" : "Wrong");
-    row.append(el("span", "when", day(m.date, { day: "numeric", month: "short" })), mt, mark);
-    list.append(row);
+  const list=el("div","card");
+  d.weeks.forEach(w=>{
+    const dt=el("details","week"),sm=el("summary");
+    sm.append(el("span",null,"Round of "+day(w.picks[0].date,{day:"numeric",month:"long"})),el("span",null,LABEL[w.status]+(counted(w)?"":" (practice)")));
+    dt.append(sm);
+    w.picks.forEach(p=>{const r=el("div","row");r.append(el("span",null,p.home+" v "+p.away),mark(p));dt.append(r);});
+    list.append(dt);
   });
   box.append(list);
+
+  const bt=d.backtest;
+  if(bt){
+    const since=bt.since.replace(/^(\d{4})-\d{2}(\d{2})$/,"$1-$2");
+    box.append(el("p","small",`For context: replaying this method over ${bt.weeks} past weeks since ${since}, the five safest games all finished under 4.5 in ${bt.model_weeks_won_pct}% of weeks. Picking five at random would have managed ${bt.random_weeks_won_pct}%. This is the baseline model, and it is only slightly ahead of chance.`));
+  }
 }
 
-(async () => {
-  try {
-    const p = await load("predictions.json");
-    renderUpcoming(p);
-    if (p.generated) $("#updated").textContent = "Updated " + new Date(p.generated).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" }) + " UTC";
-    if (p.model === "sample-data") $("#sample").hidden = false;
-  } catch (e) {
-    $("#upcoming").replaceChildren(el("p", "note", "Couldn't load predictions. Refresh the page in a minute."));
+(async()=>{
+  try{
+    const r=await fetch("picks.json",{cache:"no-store"});if(!r.ok)throw 0;
+    const d=await r.json();
+    if(d.generated)$("#meta").textContent="Baseline model · updated "+new Date(d.generated).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short",timeZone:"UTC"})+" UTC";
+    renderNow(d.weeks[0]);
+    d.weeks.length?renderRecord(d):$("#record").replaceChildren(el("p","note","No weeks recorded yet."));
+  }catch(e){
+    $("#now").replaceChildren(el("p","note","Couldn't load the picks. Refresh the page in a minute."));
   }
-  try { renderRecord(await load("history.json")); }
-  catch (e) { $("#record").replaceChildren(el("p", "note", "Couldn't load the track record. Refresh the page in a minute.")); }
 })();
 </script>
 </body>
