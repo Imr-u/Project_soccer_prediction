@@ -1,4 +1,5 @@
 import pandas as pd
+source_fix = "data/fixture.csv"
 source1 = "alpha_source/2026-2027.csv" 
 source2 = "alpha_source/2025-2026.csv"
 source3 = "alpha_source/2024-2025.csv"
@@ -66,7 +67,9 @@ def predict_game(mod_result_face, mod_result_back, home, away):
    points = [sum0, sum1, sum2]
    outcome = ''
 
-   if points[2] >= points[2] and points[1] >= points[0]:
+   if points[0] == points[1] == points[2] == 0: # [0,0,0] means the teams has never played before in the league so no prediction
+      outcome = 'nan'
+   elif points[2] >= points[2] and points[1] >= points[0]:
       outcome = 'H'
    elif points[2] >= points[2] and points[1] <= points[0]:
       outcome = 'A'
@@ -83,14 +86,16 @@ for row in eval_df:
    check.append(predict_game(mod_result_face, mod_result_back, eval_home, eval_away))
 eval_df = pd.DataFrame(eval_df)
 eval_df["pred"] = check
-eval_df["correct_sc"] = (eval_df["FTR"] == eval_df["pred"]) |( eval_df["FTR"] == 'D').astype(int)
-print(eval_df)
+eval_df["correct_sc"] = (eval_df["FTR"] == eval_df["pred"]).astype(int)
+
+eval_df["no_history"] = (eval_df["pred"] == "nan").astype(int) #it assigns 1 for nan predicitons and 0 otherwise 
 
 n     = len(eval_df)
 ones  = int(eval_df["correct_sc"].sum())
+no_history_balancer = int(eval_df['no_history'].sum())
 
-score = ones      # range: -n (all wrong) ... +n (all right)
-grade = score / n             # range: -1.0 ... +1.0  (0.0 = random)
+score = ones + (no_history_balancer/ 2)      
+grade = score / n            
 
 print(f"Correct (1s):    {ones}")
 print(f"Raw score:       {score} / {n}")

@@ -28,22 +28,57 @@ working_df = working_df.to_dict('records')
 
 eval_df = df1[["Date", "HomeTeam", "AwayTeam", "FTR"]]
 eval_df = eval_df.to_dict('records')
-check = []
+
+check_draw = []
 for n in eval_df:
-  check.append('D')
+  check_draw.append('D')
+
+check_home = []
+for n in eval_df:
+  check_home.append('H')
+
+check_away = []
+for n in eval_df:
+  check_away.append('A')
+
 eval_df = pd.DataFrame(eval_df)
-eval_df["pred"] = check
-eval_df["correct_sc"] = (eval_df["FTR"] == eval_df["pred"] ).astype(int)
-print(eval_df)
+eval_df["pred_draw"] = check_draw
+eval_df["correct_sc_draw"] = (eval_df["FTR"] == eval_df["pred_draw"] ).astype(int)
+
+eval_df["pred_home"] = check_home
+eval_df["correct_sc_home"] = (eval_df["FTR"] == eval_df["pred_home"] ).astype(int)
+
+eval_df["pred_away"] = check_away
+eval_df["correct_sc_away"] = (eval_df["FTR"] == eval_df["pred_away"] ).astype(int)
+
 
 
 n     = len(eval_df)
-ones  = int(eval_df["correct_sc"].sum())
+draw  = int(eval_df["correct_sc_draw"].sum())
+home  = int(eval_df["correct_sc_home"].sum())
+away  = int(eval_df["correct_sc_away"].sum())
 
-score = ones      # range: -n (all wrong) ... +n (all right)
-grade = score / n             # range: -1.0 ... +1.0  (0.0 = random)
 
-print(f"Correct (1s):    {ones}")
-print(f"Raw score:       {score} / {n}")
-print(f"Grade:           {grade:.2%}  (raw {grade:.3f} of len)")
+score_draw = draw 
+score_home = home      # range: -n (all wrong) ... +n (all right)
+score_away= away    # range: -n (all wrong) ... +n (all right)
+     # range: -n (all wrong) ... +n (all right)
+grade_home = score_home / n             # range: -1.0 ... +1.0  (0.0 = random)
+grade_away = score_away / n
+grade_draw = score_draw / n
+
+print('Draw')
+print(f"Correct (1s):    {draw}")
+print(f"Raw score:       {score_draw} / {n}")
+print(f"Grade:Draw           {grade_draw:.2%}  (raw {grade_draw:.3f} of len)")
+
+print('home_wins')
+print(f"Correct (1s):    {home}")
+print(f"Raw score:       {score_home} / {n}")
+print(f"Grade:HomeTeam           {grade_home:.2%}  (raw {grade_home:.3f} of len)")
+
+print('Away_wins')
+print(f"Correct (1s):    {away}")
+print(f"Raw score:       {score_away} / {n}")
+print(f"Grade:AwayTeam           {grade_away:.2%}  (raw {grade_away:.3f} of len)")
 
