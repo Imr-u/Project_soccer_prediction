@@ -1,138 +1,158 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The five safest games this week</title>
+<title>Safe Five · weekly Premier League picks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--g1:#1f6f3b;--g2:#1a6335;--paper:#f8f8f2;--ink:#14261b;--soft:#5b6f61;--line:#dde2d6;--chalk:#f4f6ef;--blue:#2347d0;--track:#dfe3d8;--win:#1b8a4a;--loss:#c23b22;--wait:#8b9a90}
-@media (prefers-color-scheme:dark){:root{--g1:#124a29;--g2:#0f4024;--paper:#0d2517;--ink:#eef3ea;--soft:#9db4a5;--line:#1d3d2a;--track:#24402f;--win:#4fcf83;--loss:#ff8a73;--wait:#7d9486}}
+:root{--bg:#0a111f;--side:#0d1626;--card:#111b30;--line:#1d2b47;--text:#e8eefc;--mut:#8fa0c0;--g:#2fd18b;--gd:#0f6b49;--red:#ff6b6b;--chip:#162340}
+[data-theme=light]{--bg:#eef3f8;--side:#fff;--card:#fff;--line:#dbe4ef;--text:#0e1b2e;--mut:#5d6f8a;--g:#0f9d66;--gd:#0f9d66;--red:#d84343;--chip:#eaf0f7}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.5;color:var(--chalk);background:repeating-linear-gradient(90deg,var(--g1) 0 72px,var(--g2) 72px 144px)}
-main{max-width:720px;margin:0 auto;padding:40px 16px 56px}
-h1{font-size:clamp(2.2rem,8vw,3.6rem);line-height:1.02;font-weight:800;letter-spacing:-.025em;margin:0 0 12px}
-h2{font-size:1.5rem;font-weight:800;letter-spacing:-.01em;margin:44px 0 14px}
-.lede{max-width:34em;margin:0;font-size:1.1rem;opacity:.92}
-.meta{margin:12px 0 0;font-size:.9rem;opacity:.8}
-.card{background:var(--paper);color:var(--ink);border-radius:8px;padding:16px;margin:0 0 12px}
-.banner{display:inline-block;margin:0 0 14px;padding:6px 12px;border-radius:6px;font-weight:600;color:#fff;background:var(--wait)}
-.banner.won{background:var(--win)}.banner.lost{background:var(--loss)}
-.teams{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:baseline;margin-bottom:12px}
-.teams b{font-size:1.15rem;font-weight:800;letter-spacing:-.01em;line-height:1.15}.teams b:last-child{text-align:right}
-.teams span{font-size:.85rem;color:var(--soft)}
-.track{height:44px;border-radius:6px;background:var(--track);overflow:hidden;animation:reveal .9s cubic-bezier(.2,.7,.2,1) both}
-.fill{display:flex;align-items:center;height:100%;padding-left:12px;background:var(--blue);color:#fff;font-weight:800;font-size:1.1rem}
-.sub{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:.92rem;color:var(--soft)}
-.res{font-weight:800}.res.under{color:var(--win)}.res.over{color:var(--loss)}
-.score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.score p{margin:0}.big{font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.03em}
-.strip{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
-.chip{min-width:62px;padding:6px 8px;border-radius:6px;text-align:center;font-size:.85rem;font-weight:600;color:#fff;background:var(--wait)}
-.chip.won{background:var(--win)}.chip.lost{background:var(--loss)}
-.chip.practice{background:transparent;color:var(--soft);border:2px dashed var(--soft)}
-details.week{border-top:1px solid var(--line);padding:10px 0}details.week:first-of-type{border-top:0}
-details.week summary{cursor:pointer;display:flex;justify-content:space-between;gap:12px;font-weight:600}
-.row{display:flex;justify-content:space-between;gap:12px;padding:6px 0 0;font-size:.95rem}
-.note{padding:16px;border:2px dashed var(--chalk);border-radius:8px}
-.small{font-size:.9rem;opacity:.85;margin:14px 0 0}
-footer{margin-top:48px;font-size:.85rem;opacity:.75}
-@keyframes reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
-@media (prefers-reduced-motion:reduce){.track{animation:none}}
-:focus-visible{outline:3px solid #ff7a1a;outline-offset:2px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 15px/1.5 "Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}
+.side{position:fixed;inset:0 auto 0 0;width:210px;background:var(--side);border-right:1px solid var(--line);padding:22px 14px;display:flex;flex-direction:column;gap:6px;z-index:5}
+.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.02em;padding:0 10px 18px}.logo b{color:var(--g)}
+.nav a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:10px;color:var(--mut);font-weight:600;transition:background .2s,color .2s}
+.nav a:hover{color:var(--text);background:var(--chip)}.nav a.on{color:var(--g);background:var(--chip);box-shadow:inset 3px 0 var(--g)}
+.wrap{margin-left:210px;padding:0 24px 40px;max-width:1040px}
+.top{display:flex;gap:12px;align-items:center;padding:18px 0}
+.top input{flex:1;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:999px;color:var(--text);padding:11px 18px;font:inherit}
+.top button{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:10px 14px;cursor:pointer;font:inherit}
+.hero{position:relative;overflow:hidden;border-radius:16px;padding:34px 28px;margin-bottom:18px;border:1px solid var(--line);background:linear-gradient(115deg,var(--card) 45%,#0d3b2e 75%,#13654b)}
+.hero:after{content:"";position:absolute;right:-60px;top:-40px;width:240px;height:400px;background:linear-gradient(var(--g),transparent);opacity:.18;transform:rotate(28deg)}
+.hero h1{margin:0 0 8px;font-size:clamp(1.9rem,5vw,3rem);line-height:1.05;font-weight:800;letter-spacing:-.03em;max-width:12em}.hero h1 em{color:var(--g);font-style:normal}
+.hero p{margin:0 0 18px;color:var(--mut);max-width:30em}
+.btn{display:inline-block;background:var(--g);color:#04281b;font-weight:800;padding:11px 22px;border-radius:999px;transition:transform .2s}.btn:hover{transform:translateY(-2px)}
+.ball{position:absolute;right:28px;bottom:-20px;width:150px;opacity:.95}
+.grid{display:grid;grid-template-columns:1fr 300px;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+.card h2{margin:0 0 12px;font-size:1.05rem;font-weight:800}
+.fx{padding:14px 0;border-top:1px solid var(--line);transition:background .2s}.fx:first-of-type{border-top:0}
+.fx .when{font-size:.8rem;color:var(--mut);margin-bottom:8px}
+.teams{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;font-weight:600}
+.teams .t{display:flex;align-items:center;gap:8px}.teams .t:last-child{justify-content:flex-end;text-align:right}
+.badge{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-weight:800;color:#fff;background:hsl(var(--h) 55% 38%)}
+.vs{font-size:.75rem;color:var(--mut)}
+.pct{display:flex;justify-content:center;align-items:baseline;gap:8px;margin-top:10px}
+.pct b{font-size:1.5rem;font-weight:800;color:var(--g);letter-spacing:-.02em}.pct span{font-size:.82rem;color:var(--mut)}
+.pill{font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:999px;background:var(--g);color:#04281b}
+.res{font-weight:800}.res.under{color:var(--g)}.res.over{color:var(--red)}
+.fx.dim .pct b{color:var(--mut)}
+.ring{display:flex;gap:16px;align-items:center}.ring svg{width:110px;flex:none}
+.ring .n{font-size:1.9rem;font-weight:800;line-height:1}.ring p{margin:2px 0;color:var(--mut);font-size:.9rem}
+.strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{padding:5px 9px;border-radius:8px;font-size:.78rem;font-weight:600;background:var(--mut);color:#fff}
+.chip.won{background:var(--gd);color:#fff}.chip.lost{background:var(--red)}.chip.practice{background:transparent;color:var(--mut);border:1.5px dashed var(--mut)}
+details{border-top:1px solid var(--line);padding:10px 0}details:first-of-type{border-top:0}
+summary{cursor:pointer;display:flex;justify-content:space-between;font-weight:600}
+.row{display:flex;justify-content:space-between;padding-top:6px;color:var(--mut);font-size:.9rem}
+.note{color:var(--mut);font-size:.9rem}.step{display:flex;gap:10px;margin:8px 0;color:var(--mut)}.step b{color:var(--g)}
+footer{color:var(--mut);font-size:.8rem;margin-top:24px}
+[hidden]{display:none!important}
+@media(max-width:899px){
+  .side{inset:auto 0 0 0;width:auto;flex-direction:row;justify-content:space-around;padding:6px;border-right:0;border-top:1px solid var(--line)}
+  .logo{display:none}.nav{display:flex;width:100%;justify-content:space-around}.nav a{flex-direction:column;gap:2px;font-size:.75rem;padding:8px 18px;box-shadow:none!important}
+  .wrap{margin-left:0;padding:0 14px 90px}.grid{grid-template-columns:1fr}.ball{width:100px;right:10px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<main>
-  <h1>The five safest games this week</h1>
-  <p class="lede">Each round I pick the five Premier League games least likely to have 5 or more goals. A week counts as a win only if all five finish under 4.5 goals.</p>
-  <p class="meta" id="meta"></p>
+<aside class="side">
+  <div class="logo">Safe<b>Five</b></div>
+  <nav class="nav"><a href="#home" data-p="home">Home</a><a href="#picks" data-p="picks">Picks</a></nav>
+</aside>
+<div class="wrap">
+  <div class="top"><input id="q" type="search" placeholder="Search for a team…" aria-label="Search for a team"><button id="theme" aria-label="Switch light or dark">◐</button></div>
 
-  <h2 id="now-title">This week's picks</h2>
-  <div id="now"><p class="note">Loading…</p></div>
+  <section id="home">
+    <div class="hero">
+      <h1>The five safest games <em>this week</em></h1>
+      <p>Every round I pick the Premier League games least likely to have 5 or more goals. A week is a win only if all five finish under 4.5.</p>
+      <a class="btn" href="#picks">See the record</a>
+      <svg class="ball" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#f4f6fb" stroke="#c9d3e6" stroke-width="2"/><polygon points="50,30 68,43 61,64 39,64 32,43" fill="#16213a"/><path d="M50 30V8M68 43l21-7M61 64l13 18M39 64L26 82M32 43L11 36" stroke="#16213a" stroke-width="3"/></svg>
+    </div>
+    <div class="grid">
+      <div class="card"><h2 id="up-title">This week's matches</h2><div id="upcoming"><p class="note">Loading…</p></div></div>
+      <div><div class="card"><h2>Model record</h2><div id="record"></div></div>
+      <div class="card"><h2>How it works</h2>
+        <div class="step"><b>1</b><span>The model rates each team's goals scored and conceded.</span></div>
+        <div class="step"><b>2</b><span>It ranks every game by chance of finishing under 4.5 goals.</span></div>
+        <div class="step"><b>3</b><span>The five safest are announced before kickoff and never changed.</span></div></div></div>
+    </div>
+  </section>
 
-  <h2>The record</h2>
-  <div id="record"></div>
-
+  <section id="picks" hidden>
+    <div class="card"><h2>Week by week</h2><div id="strip" class="strip"></div><div id="rounds" style="margin-top:12px"></div><p class="note" id="bt"></p></div>
+  </section>
   <footer>A learning project, not betting advice. Picks are announced before kickoff and never changed.</footer>
-</main>
+</div>
 <script>
-const $=s=>document.querySelector(s);
-const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
-const day=(iso,o)=>new Date(iso+"T12:00:00Z").toLocaleDateString("en-GB",{timeZone:"UTC",...o});
-const pc=p=>Math.round(p*100);
-const LABEL={won:"Won, +1",lost:"Lost",pending:"In progress",void:"Void"};
-const counted=w=>w.counted!==false;
-const fs=s=>s.replace("-","–");
-const mark=p=>p.result==="pending"?el("span",null,day(p.date,{weekday:"short"})+" "+p.time):
-  p.result==="void"?el("span",null,"Postponed"):
-  el("span","res "+p.result,(p.result==="under"?"✓ ":"✗ ")+fs(p.score));
+const $=s=>document.querySelector(s),el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const day=(i,o)=>new Date(i+"T12:00:00Z").toLocaleDateString("en-GB",{timeZone:"UTC",...o}),pc=p=>Math.round(p*100);
+const LABEL={won:"Won, +1",lost:"Lost",pending:"In progress",void:"Void"},counted=w=>w.counted!==false,fs=s=>s.replace("-","–");
+let DATA=null;
 
-function pickCard(p){
-  const c=el("article","card"),t=el("div","teams");
-  t.append(el("b",null,p.home),el("span",null,"v"),el("b",null,p.away));
-  const tr=el("div","track"),f=el("div","fill",pc(p.p_under)+"%");
-  f.style.width=Math.max(pc(p.p_under),12)+"%";tr.append(f);
-  const sub=el("div","sub");sub.append(el("span",null,"Chance of under 4.5 goals"),mark(p));
-  c.append(t,tr,sub);return c;
-}
+function badge(n){let h=0;for(const c of n)h=(h*31+c.charCodeAt(0))%360;const w=n.split(" ");
+  const b=el("span","badge",(w.length>1?w.map(x=>x[0]).join(""):n.slice(0,3)).toUpperCase().slice(0,3));b.style.setProperty("--h",h);return b}
+function team(n,right){const t=el("div","t");right?t.append(el("span",null,n),badge(n)):t.append(badge(n),el("span",null,n));return t}
+function fixture(g){
+  const f=el("div","fx"+(g.picked?"":" dim"));f.dataset.t=(g.home+" "+g.away).toLowerCase();
+  const wh=el("div","when",day(g.date,{weekday:"short",day:"numeric",month:"short"})+" · "+g.time);
+  if(g.picked)wh.append(" ",el("span","pill","PICK"));
+  const t=el("div","teams");t.append(team(g.home),el("span","vs","vs"),team(g.away,true));
+  const p=el("div","pct");p.append(el("b",null,pc(g.p_under)+"%"),el("span",null,"chance of under 4.5 goals"));
+  if(g.result==="under"||g.result==="over")p.append(el("span","res "+g.result,(g.result==="under"?"✓ ":"✗ ")+fs(g.score)));
+  f.append(wh,t,p);return f}
 
-function renderNow(w){
-  const box=$("#now");box.replaceChildren();
-  if(!w){box.append(el("p","note","The first picks appear here after the next Tuesday or Friday update."));return;}
-  $("#now-title").textContent=w.status==="pending"?"This week's picks":"Latest picks";
-  box.append(el("p","banner "+w.status,LABEL[w.status]+(counted(w)?"":" · practice week")));
-  if(!counted(w))box.append(el("p","small","Only these five games were left when the picks went out, so there was no choice to make. This week isn't counted in the record."));
-  w.picks.forEach(p=>box.append(pickCard(p)));
+function renderHome(d){
+  const w=d.weeks[0],box=$("#upcoming");box.replaceChildren();
+  if(!w){box.append(el("p","note","The first picks appear after the next Tuesday or Friday update."));return}
+  $("#up-title").textContent=w.status==="pending"?"This week's matches":"Latest round";
+  const games=(w.games||w.picks.map(p=>({...p,picked:true}))).slice().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+  games.forEach(g=>box.append(fixture(g)));
+  if(!counted(w))box.append(el("p","note","Practice round: only these games were left when the picks went out, so it isn't counted."));
 }
 
 function renderRecord(d){
-  const box=$("#record");box.replaceChildren();
-  const ws=d.weeks.filter(counted);
-  const won=ws.filter(w=>w.status==="won").length,lost=ws.filter(w=>w.status==="lost").length;
-  const fin=won+lost,wait=ws.filter(w=>w.status==="pending").length;
-  const card=el("div","card"),s=el("div","score");
-  s.append(el("span","big",String(won)),el("p",null,fin?`${won===1?"week":"weeks"} won out of ${fin} finished (${pc(won/fin)}%)`:"weeks won so far. No week has finished yet."));
-  card.append(s);
-  if(wait)card.append(el("p","small",`${wait} in progress.`));
-  const strip=el("div","strip");
-  d.weeks.slice().reverse().forEach(w=>{
-    const label=day(w.picks[0].date,{day:"numeric",month:"short"});
-    const ch=el("span","chip "+(counted(w)?w.status:"practice"),w.status==="won"&&counted(w)?label+" +1":label);
-    ch.title=LABEL[w.status];strip.append(ch);
-  });
-  card.append(strip);box.append(card);
-
-  const list=el("div","card");
-  d.weeks.forEach(w=>{
-    const dt=el("details","week"),sm=el("summary");
-    sm.append(el("span",null,"Round of "+day(w.picks[0].date,{day:"numeric",month:"long"})),el("span",null,LABEL[w.status]+(counted(w)?"":" (practice)")));
-    dt.append(sm);
-    w.picks.forEach(p=>{const r=el("div","row");r.append(el("span",null,p.home+" v "+p.away),mark(p));dt.append(r);});
-    list.append(dt);
-  });
-  box.append(list);
-
-  const bt=d.backtest;
-  if(bt){
-    const since=bt.since.replace(/^(\d{4})-\d{2}(\d{2})$/,"$1-$2");
-    box.append(el("p","small",`For context: replaying this method over ${bt.weeks} past weeks since ${since}, the five safest games all finished under 4.5 in ${bt.model_weeks_won_pct}% of weeks. Picking five at random would have managed ${bt.random_weeks_won_pct}%. This is the baseline model, and it is only slightly ahead of chance.`));
-  }
+  const ws=d.weeks.filter(counted),won=ws.filter(w=>w.status==="won").length,lost=ws.filter(w=>w.status==="lost").length,wait=ws.filter(w=>w.status==="pending").length,fin=won+lost;
+  const r=fin?won/fin:0,C=2*Math.PI*40,box=$("#record");box.replaceChildren();
+  const wrap=el("div","ring");
+  wrap.innerHTML=`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="var(--line)" stroke-width="10"/><circle cx="50" cy="50" r="40" fill="none" stroke="var(--g)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C*r} ${C}" transform="rotate(-90 50 50)"/><text x="50" y="56" text-anchor="middle" fill="currentColor" font-size="20" font-weight="800">${fin?pc(r)+"%":"–"}</text></svg>`;
+  const info=el("div");info.append(el("div","n",`${won} won`),el("p",null,`${lost} lost · ${wait} in progress`),el("p",null,"Weeks where all 5 picks stayed under 4.5"));
+  wrap.append(info);box.append(wrap);
+  const bt=d.backtest;if(bt)box.append(el("p","note",`Backtest over ${bt.weeks} past weeks: ${bt.model_weeks_won_pct}% won, against ${bt.random_weeks_won_pct}% for random picks.`));
 }
 
-(async()=>{
-  try{
-    const r=await fetch("picks.json",{cache:"no-store"});if(!r.ok)throw 0;
-    const d=await r.json();
-    if(d.generated)$("#meta").textContent="Baseline model · updated "+new Date(d.generated).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short",timeZone:"UTC"})+" UTC";
-    renderNow(d.weeks[0]);
-    d.weeks.length?renderRecord(d):$("#record").replaceChildren(el("p","note","No weeks recorded yet."));
-  }catch(e){
-    $("#now").replaceChildren(el("p","note","Couldn't load the picks. Refresh the page in a minute."));
-  }
-})();
+function renderPicks(d){
+  const strip=$("#strip"),rounds=$("#rounds");strip.replaceChildren();rounds.replaceChildren();
+  d.weeks.slice().reverse().forEach(w=>{const l=day(w.picks[0].date,{day:"numeric",month:"short"});
+    const c=el("span","chip "+(counted(w)?w.status:"practice"),w.status==="won"&&counted(w)?l+" +1":l);c.title=LABEL[w.status];strip.append(c)});
+  d.weeks.forEach(w=>{const dt=el("details"),sm=el("summary");
+    sm.append(el("span",null,"Round of "+day(w.picks[0].date,{day:"numeric",month:"long"})),el("span",null,LABEL[w.status]+(counted(w)?"":" (practice)")));dt.append(sm);
+    w.picks.forEach(p=>{const r=el("div","row");r.append(el("span",null,p.home+" v "+p.away),
+      p.result==="under"||p.result==="over"?el("span","res "+p.result,(p.result==="under"?"✓ ":"✗ ")+fs(p.score)):el("span",null,p.result==="void"?"postponed":pc(p.p_under)+"% under"));dt.append(r)});
+    rounds.append(dt)});
+  const bt=d.backtest;if(bt)$("#bt").textContent=`Replaying the method over ${bt.weeks} past weeks since ${bt.since}: the five safest games all stayed under 4.5 in ${bt.model_weeks_won_pct}% of weeks; five random games would manage ${bt.random_weeks_won_pct}%. It is only slightly ahead of chance.`;
+}
+
+function route(){const p=location.hash==="#picks"?"picks":"home";
+  $("#home").hidden=p!=="home";$("#picks").hidden=p!=="picks";
+  document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("on",a.dataset.p===p));scrollTo(0,0)}
+addEventListener("hashchange",route);route();
+
+$("#q").addEventListener("input",e=>{const q=e.target.value.trim().toLowerCase();
+  document.querySelectorAll(".fx").forEach(f=>f.hidden=!!q&&!f.dataset.t.includes(q))});
+const root=document.documentElement;
+try{const s=localStorage.getItem("theme");if(s)root.dataset.theme=s}catch(e){}
+$("#theme").addEventListener("click",()=>{const n=root.dataset.theme==="dark"?"light":"dark";root.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}});
+
+(async()=>{try{const r=await fetch("picks.json",{cache:"no-store"});if(!r.ok)throw 0;DATA=await r.json();
+  if(!DATA.weeks.length)throw 0;renderHome(DATA);renderRecord(DATA);renderPicks(DATA)}
+ catch(e){$("#upcoming").replaceChildren(el("p","note","No picks yet, or the data couldn't load. Check back after the next update."))}})();
 </script>
 </body>
 </html>
