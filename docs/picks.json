@@ -1,19 +1,19 @@
 {
-  "generated": "2026-11-09T08:22:56Z",
+  "generated": "2026-11-09T15:27:04Z",
   "model": "baseline-v1",
   "line": 4.5,
   "picks_per_week": 5,
   "summary": {
     "weeks_won": 0,
-    "weeks_lost": 0,
-    "weeks_pending": 1,
+    "weeks_lost": 1,
+    "weeks_pending": 0,
     "weeks_void": 0,
-    "win_rate": null
+    "win_rate": 0.0
   },
   "backtest": {
     "since": "2022-2023",
-    "weeks": 151,
-    "model_weeks_won_pct": 43.0,
+    "weeks": 152,
+    "model_weeks_won_pct": 42.8,
     "random_weeks_won_pct": 41.3,
     "model_picks_under_pct": 84.6,
     "random_picks_under_pct": 83.7
@@ -23,7 +23,7 @@
       "id": "2026-11-06",
       "model": "baseline-v1",
       "announced_at": "2026-11-08T05:40:32Z",
-      "status": "pending",
+      "status": "lost",
       "games_total": 10,
       "picks": [
         {
@@ -33,8 +33,8 @@
           "away": "Chelsea",
           "exp_goals": 2.706,
           "p_under": 0.862,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "1-0"
         },
         {
           "date": "2026-11-08",
@@ -43,8 +43,8 @@
           "away": "Aston Villa",
           "exp_goals": 2.888,
           "p_under": 0.8338,
-          "result": "pending",
-          "score": null
+          "result": "over",
+          "score": "4-4"
         },
         {
           "date": "2026-11-08",
@@ -53,8 +53,8 @@
           "away": "Liverpool",
           "exp_goals": 2.905,
           "p_under": 0.831,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "1-3"
         },
         {
           "date": "2026-11-08",
@@ -63,8 +63,8 @@
           "away": "Brentford",
           "exp_goals": 2.929,
           "p_under": 0.827,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "2-0"
         },
         {
           "date": "2026-11-08",
@@ -73,8 +73,8 @@
           "away": "Bournemouth",
           "exp_goals": 3.048,
           "p_under": 0.8071,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "1-2"
         }
       ]
     }
