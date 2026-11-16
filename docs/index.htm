@@ -124,7 +124,7 @@ function renderRecord(d){
   wrap.innerHTML=`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="var(--line)" stroke-width="10"/><circle cx="50" cy="50" r="40" fill="none" stroke="var(--g)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C*r} ${C}" transform="rotate(-90 50 50)"/><text x="50" y="56" text-anchor="middle" fill="currentColor" font-size="20" font-weight="800">${fin?pc(r)+"%":"–"}</text></svg>`;
   const info=el("div");info.append(el("div","n",`${won} won`),el("p",null,`${lost} lost · ${wait} in progress`),el("p",null,"Weeks where all 5 picks stayed under 4.5"));
   wrap.append(info);box.append(wrap);
-  const bt=d.backtest;if(bt)box.append(el("p","note",`Backtest over ${bt.weeks} past weeks: ${bt.model_weeks_won_pct}% won, against ${bt.random_weeks_won_pct}% for random picks.`));
+  const bt=d.backtest;if(bt)box.append(el("p","note",`Backtest over ${bt.weeks} past weeks: ${bt.model_weeks_won_pct}% won, against ${bt.random_weeks_won_pct}% for random picks. The settings were tuned on these seasons, so this flatters the model a little.`));
 }
 
 function renderPicks(d){
@@ -136,7 +136,7 @@ function renderPicks(d){
     w.picks.forEach(p=>{const r=el("div","row");r.append(el("span",null,p.home+" v "+p.away),
       p.result==="under"||p.result==="over"?el("span","res "+p.result,(p.result==="under"?"✓ ":"✗ ")+fs(p.score)):el("span",null,p.result==="void"?"postponed":pc(p.p_under)+"% under"));dt.append(r)});
     rounds.append(dt)});
-  const bt=d.backtest;if(bt)$("#bt").textContent=`Replaying the method over ${bt.weeks} past weeks since ${bt.since}: the five safest games all stayed under 4.5 in ${bt.model_weeks_won_pct}% of weeks; five random games would manage ${bt.random_weeks_won_pct}%. It is only slightly ahead of chance.`;
+  const bt=d.backtest;if(bt)$("#bt").textContent=`Replaying the method over ${bt.weeks} past weeks since ${bt.since}: the five safest games all stayed under 4.5 in ${bt.model_weeks_won_pct}% of weeks; five random games would manage ${bt.random_weeks_won_pct}%. The settings were tuned on these same seasons, which flatters it a little. It is only slightly ahead of chance.`;
 }
 
 function route(){const p=location.hash==="#picks"?"picks":"home";

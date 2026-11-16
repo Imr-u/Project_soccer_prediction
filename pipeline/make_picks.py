@@ -64,7 +64,7 @@ def announce(now, fixtures_path=FIXTURES, log_path=LOG, results=None):
     for m in results:
         state.add(m)
     for g in games:
-        g["exp"] = state.expected_goals(g["home"], g["away"])
+        g["exp"] = state.expected_goals(g["home"], g["away"], g["date"])
         g["p"] = poisson_cdf(UNDER_MAX, g["exp"])
 
     ranked = sorted(eligible, key=lambda g: (g["exp"], g["kickoff"], g["home"]))

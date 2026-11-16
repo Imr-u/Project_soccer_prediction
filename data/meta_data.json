@@ -1,0 +1,24 @@
+{
+ "name": "project_soccer_prediction_dataset_structure",
+ "description": "It contains usefull infn about the data including datatype and full_title",
+
+ "Abrivated_columns":[
+ {
+  "6FTHG": "full_time_home_goal",
+  "7FTAG": "full_time_away_goal",
+  "8FTR": "full_time_result",
+  "9HTHG": "half_time_home_goal",
+  "10HTAG": "half_time_home_goal",
+  "11HTR": "half_time_result",
+
+  "12HS,13AS": "total_shots",
+  "14HST,15AST": "total_shots_on_target",
+  "16HF,17AF": "total_fouls",
+  "18HC,19AC": "total_corners",
+  "20HY,21AY": "yellow_cards",
+  "22HR,23AR": "red_cards"
+ }
+
+ ]
+
+}

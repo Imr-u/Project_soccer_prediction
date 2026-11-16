@@ -2,8 +2,9 @@
 
 The model: expected total goals for a match is
     (home attack + away defence) / 2  +  (away attack + home defence) / 2
-where each team's attack/defence is its average goals scored/conceded in ALL its earlier
-matches, pulled toward the league average as if backed by SHRINK_K extra average matches.
+where each team's attack/defence is its average goals scored/conceded in its earlier matches,
+with older matches fading (a match counts half as much for every HALF_LIFE_DAYS of age), then
+pulled toward the league average as if backed by SHRINK_K extra average matches.
 Lower expected goals = safer pick for "under 4.5".
 """
 import csv
@@ -14,12 +15,13 @@ from zoneinfo import ZoneInfo
 
 from update_results import ALPHA_SOURCE
 
-MODEL_NAME = "baseline-v1"
+MODEL_NAME = "baseline-v2"
 LINE = 4.5
 UNDER_MAX = 4          # "under 4.5" means 4 goals or fewer
 PICKS = 5              # games picked per round
 MIN_GAMES = 8          # rounds with fewer games than this are not announced
 SHRINK_K = 5
+HALF_LIFE_DAYS = 90    # a match counts half as much for every 90 days of age (tuned on 2022-23 to 2024-25)
 LEAGUE_AVG_START = 1.45
 LONDON = ZoneInfo("Europe/London")   # fixture times are UK local time
 
@@ -85,20 +87,28 @@ class RatingState:
         return self.total_goals / (2 * self.matches) if self.matches else LEAGUE_AVG_START
 
     def add(self, m):
-        self.hist.setdefault(m["home"], []).append((m["hg"], m["ag"]))
-        self.hist.setdefault(m["away"], []).append((m["ag"], m["hg"]))
+        day = m["date"].toordinal()
+        self.hist.setdefault(m["home"], []).append((day, m["hg"], m["ag"]))
+        self.hist.setdefault(m["away"], []).append((day, m["ag"], m["hg"]))
         self.total_goals += m["hg"] + m["ag"]
         self.matches += 1
 
-    def _averages(self, team):
-        h = self.hist.get(team, [])
-        n, K, avg = len(h), SHRINK_K, self.league_avg
-        return ((sum(s for s, c in h) + K * avg) / (n + K),
-                (sum(c for s, c in h) + K * avg) / (n + K))
+    def _averages(self, team, today):
+        """Recency-weighted goals scored/conceded: a match counts half as much per HALF_LIFE_DAYS of age."""
+        avg, K = self.league_avg, SHRINK_K
+        weight = scored = conceded = 0.0
+        for day, s, c in self.hist.get(team, []):
+            w = 0.5 ** ((today - day) / HALF_LIFE_DAYS)
+            weight += w
+            scored += w * s
+            conceded += w * c
+        return ((scored + K * avg) / (weight + K), (conceded + K * avg) / (weight + K))
 
-    def expected_goals(self, home, away):
-        scored_h, conceded_h = self._averages(home)
-        scored_a, conceded_a = self._averages(away)
+    def expected_goals(self, home, away, on):
+        """Expected total goals for a game played on the date `on` (a datetime.date)."""
+        today = on.toordinal()
+        scored_h, conceded_h = self._averages(home, today)
+        scored_a, conceded_a = self._averages(away, today)
         return (scored_h + conceded_a) / 2 + (scored_a + conceded_h) / 2
 
 
@@ -112,7 +122,7 @@ def backtest(results, from_season="2022-2023"):
         if prev is not None and (m["date"] - prev).days >= 2:
             week += 1
         prev = m["date"]
-        rows.append({**m, "week": week, "exp": state.expected_goals(m["home"], m["away"])})
+        rows.append({**m, "week": week, "exp": state.expected_goals(m["home"], m["away"], m["date"])})
         state.add(m)
 
     by_week = {}
@@ -137,7 +147,7 @@ def backtest(results, from_season="2022-2023"):
         rand_under += u / n
     if not weeks:
         return None
-    return {"since": from_season, "weeks": weeks,
+    return {"since": from_season, "weeks": weeks, "half_life_days": HALF_LIFE_DAYS, "shrink_k": SHRINK_K,
             "model_weeks_won_pct": round(100 * won / weeks, 1),
             "random_weeks_won_pct": round(100 * rand_won / weeks, 1),
             "model_picks_under_pct": round(100 * picked_under / picked_total, 1),
