@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-16T15:03:25Z",
-  "model": "baseline-v1",
+  "generated": "2026-11-17T15:37:23Z",
+  "model": "baseline-v2",
   "line": 4.5,
   "picks_per_week": 5,
   "summary": {
@@ -13,9 +13,11 @@
   "backtest": {
     "since": "2022-2023",
     "weeks": 152,
-    "model_weeks_won_pct": 42.8,
+    "half_life_days": 90,
+    "shrink_k": 5,
+    "model_weeks_won_pct": 48.0,
     "random_weeks_won_pct": 41.3,
-    "model_picks_under_pct": 84.6,
+    "model_picks_under_pct": 85.3,
     "random_picks_under_pct": 83.7
   },
   "weeks": [
