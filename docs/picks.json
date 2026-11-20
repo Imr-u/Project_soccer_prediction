@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-19T15:22:49Z",
+  "generated": "2026-11-20T15:00:07Z",
   "model": "baseline-v2",
   "line": 4.5,
   "picks_per_week": 5,
   "summary": {
     "weeks_won": 0,
     "weeks_lost": 1,
-    "weeks_pending": 0,
+    "weeks_pending": 1,
     "weeks_void": 0,
     "win_rate": 0.0
   },
@@ -21,6 +21,65 @@
     "random_picks_under_pct": 83.7
   },
   "weeks": [
+    {
+      "id": "2026-11-21",
+      "model": "baseline-v2",
+      "announced_at": "2026-11-20T15:00:07Z",
+      "status": "pending",
+      "games_total": 10,
+      "picks": [
+        {
+          "date": "2026-11-21",
+          "time": "17:30",
+          "home": "Newcastle",
+          "away": "Arsenal",
+          "exp_goals": 2.594,
+          "p_under": 0.8783,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-23",
+          "time": "20:00",
+          "home": "Brentford",
+          "away": "Everton",
+          "exp_goals": 2.664,
+          "p_under": 0.8683,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-21",
+          "time": "15:00",
+          "home": "Chelsea",
+          "away": "Leeds",
+          "exp_goals": 2.67,
+          "p_under": 0.8673,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-22",
+          "time": "14:00",
+          "home": "Hull",
+          "away": "Brighton",
+          "exp_goals": 2.695,
+          "p_under": 0.8636,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-21",
+          "time": "15:00",
+          "home": "Bournemouth",
+          "away": "Nott'm Forest",
+          "exp_goals": 2.73,
+          "p_under": 0.8585,
+          "result": "pending",
+          "score": null
+        }
+      ]
+    },
     {
       "id": "2026-11-06",
       "model": "baseline-v1",
