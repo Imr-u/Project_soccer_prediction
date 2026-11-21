@@ -57,6 +57,15 @@ def check_log(log):
     return problems
 
 
+def game_row(r, res):
+    """One game of a round (picked or not) for the site, with its score once played."""
+    got = res.get((r["season"], r["home"], r["away"]))
+    return {"date": r["date"], "time": r["time"], "home": r["home"], "away": r["away"],
+            "p_under": float(r["p_under"]), "picked": r["picked"] == "1",
+            "result": ("under" if sum(got) <= UNDER_MAX else "over") if got else "pending",
+            "score": f"{got[0]}-{got[1]}" if got else None}
+
+
 def evaluate(log, results, now):
     res = {(m["season"], m["home"], m["away"]): (m["hg"], m["ag"]) for m in results}
     batches = {}
@@ -82,7 +91,8 @@ def evaluate(log, results, now):
         status = ("lost" if "over" in states else "void" if "void" in states
                   else "pending" if "pending" in states else "won")
         weeks.append({"id": bid, "model": model, "announced_at": rows[0]["announced_at"],
-                      "status": status, "games_total": len(rows), "picks": picks})
+                      "status": status, "games_total": len(rows), "picks": picks,
+                      "games": [game_row(r, res) for r in sorted(rows, key=lambda r: (r["date"], r["time"]))]})
     weeks.sort(key=lambda w: (w["picks"][0]["date"] if w["picks"] else "", w["announced_at"]), reverse=True)
     return weeks
 

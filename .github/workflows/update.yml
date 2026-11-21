@@ -48,6 +48,16 @@ jobs:
         continue-on-error: true
         run: python pipeline/validate_picks.py
 
+      - name: Announce corner picks
+        id: corner_picks
+        continue-on-error: true
+        run: python pipeline/make_corner_picks.py
+
+      - name: Validate corner picks and update the site data
+        id: corner_validate
+        continue-on-error: true
+        run: python pipeline/validate_corner_picks.py
+
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
@@ -55,6 +65,7 @@ jobs:
           git add alpha_source
           [ -d data ] && git add data || true
           [ -f docs/picks.json ] && git add docs/picks.json || true
+          [ -f docs/corners.json ] && git add docs/corners.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
@@ -64,7 +75,7 @@ jobs:
           fi
 
       - name: Fail the job if a step failed
-        if: steps.results.outcome == 'failure' || steps.fixtures.outcome == 'failure' || steps.picks.outcome == 'failure' || steps.validate.outcome == 'failure'
+        if: steps.results.outcome == 'failure' || steps.fixtures.outcome == 'failure' || steps.picks.outcome == 'failure' || steps.validate.outcome == 'failure' || steps.corner_picks.outcome == 'failure' || steps.corner_validate.outcome == 'failure'
         run: |
           echo "results: ${{ steps.results.outcome }}, fixtures: ${{ steps.fixtures.outcome }}, picks: ${{ steps.picks.outcome }}, validate: ${{ steps.validate.outcome }}"
           exit 1
