@@ -66,7 +66,7 @@ footer{color:var(--mut);font-size:.8rem;margin-top:24px}
 <body>
 <aside class="side">
   <div class="logo">Safe<b>Five</b></div>
-  <nav class="nav"><a href="#home" data-p="home">Home</a><a href="#picks" data-p="picks">Picks</a></nav>
+  <nav class="nav"><a href="#home" data-p="home">Home</a><a href="#picks" data-p="picks">Picks</a><a href="#corners" data-p="corners">Corners</a></nav>
 </aside>
 <div class="wrap">
   <div class="top"><input id="q" type="search" placeholder="Search for a team…" aria-label="Search for a team"><button id="theme" aria-label="Switch light or dark">◐</button></div>
@@ -90,6 +90,13 @@ footer{color:var(--mut);font-size:.8rem;margin-top:24px}
 
   <section id="picks" hidden>
     <div class="card"><h2>Week by week</h2><div id="strip" class="strip"></div><div id="rounds" style="margin-top:12px"></div><p class="note" id="bt"></p></div>
+  </section>
+  <section id="corners" hidden>
+    <div class="card"><h2 id="c-title">This week's corner picks</h2>
+      <p class="note">Three games, each picked for under 11.5 corners. The week is won only if all three finish under 11.5. The safest picks are the games where the betting market expects the fewest goals.</p>
+      <div id="c-now" style="margin-top:8px"><p class="note">Loading…</p></div></div>
+    <div class="card"><h2>Corners record</h2><div id="c-record"></div></div>
+    <div class="card"><h2>Week by week</h2><div id="c-strip" class="strip"></div><div id="c-rounds" style="margin-top:12px"></div><p class="note" id="c-bt"></p></div>
   </section>
   <footer>A learning project, not betting advice. Picks are announced before kickoff and never changed.</footer>
 </div>
@@ -143,8 +150,8 @@ function renderPicks(d){
   const bt=d.backtest;if(bt)$("#bt").textContent=`Replaying the method over ${bt.weeks} past weeks since ${bt.since}: the five safest games all stayed under 4.5 in ${bt.model_weeks_won_pct}% of weeks; five random games would manage ${bt.random_weeks_won_pct}%. The settings were tuned on these same seasons, which flatters it a little. It is only slightly ahead of chance.`;
 }
 
-function route(){const p=location.hash==="#picks"?"picks":"home";
-  $("#home").hidden=p!=="home";$("#picks").hidden=p!=="picks";
+function route(){const h=location.hash.slice(1),p=["picks","corners"].includes(h)?h:"home";
+  $("#home").hidden=p!=="home";$("#picks").hidden=p!=="picks";$("#corners").hidden=p!=="corners";
   document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("on",a.dataset.p===p));scrollTo(0,0)}
 addEventListener("hashchange",route);route();
 
@@ -158,6 +165,39 @@ $("#theme").addEventListener("click",()=>{const n=root.dataset.theme==="dark"?"l
 (async()=>{try{const r=await fetch("picks.json",{cache:"no-store"});if(!r.ok)throw 0;DATA=await r.json();
   if(!DATA.weeks.length)throw 0;renderHome(DATA);renderRecord(DATA);renderPicks(DATA)}
  catch(e){$("#upcoming").replaceChildren(el("p","note","No picks yet, or the data couldn't load. Check back after the next update."))}})();
+
+function cfix(g){
+  const f=el("div","fx"+(g.picked?"":" dim"));f.dataset.t=(g.home+" "+g.away).toLowerCase();
+  const wh=el("div","when",day(g.date,{weekday:"short",day:"numeric",month:"short"})+" · "+g.time);
+  if(g.picked)wh.append(" ",el("span","pill","PICK"));
+  const t=el("div","teams");t.append(team(g.home),el("span","vs","vs"),team(g.away,true));
+  const p=el("div","pct");
+  if(g.p_over25!=null)p.append(el("b",null,pc(g.p_over25)+"%"),el("span",null,"market chance of 3+ goals"));
+  if(g.result==="under"||g.result==="over")p.append(el("span","res "+g.result,(g.result==="under"?"✓ ":"✗ ")+g.corners+" corners"));
+  f.append(wh,t,p);return f}
+const cmark=p=>p.result==="under"||p.result==="over"?el("span","res "+p.result,(p.result==="under"?"✓ ":"✗ ")+p.corners+" corners"):el("span",null,p.result==="void"?"postponed":"pending");
+
+function renderCorners(d){
+  const now=$("#c-now"),rec=$("#c-record"),strip=$("#c-strip"),rounds=$("#c-rounds");
+  [now,rec,strip,rounds].forEach(b=>b.replaceChildren());
+  if(!d.weeks.length){now.append(el("p","note","The first corner picks appear after the next Tuesday or Friday update."));return}
+  const w=d.weeks[0];
+  $("#c-title").textContent=w.status==="pending"?"This week's corner picks":"Latest corner picks";
+  const st=el("span","chip "+w.status,LABEL[w.status]);st.style.display="inline-block";st.style.margin="4px 0 10px";now.append(st);
+  (w.games||w.picks.map(p=>({...p,picked:true}))).slice().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).forEach(g=>now.append(cfix(g)));
+
+  const won=d.summary.weeks_won,lost=d.summary.weeks_lost,wait=d.summary.weeks_pending;
+  const n=el("div","note",`${won} won, ${lost} lost, ${wait} in progress`);n.style.fontSize="1.1rem";n.style.fontWeight="800";rec.append(n);
+  if(won+lost)rec.append(el("p","note",`${pc(won/(won+lost))}% of finished weeks won. A week is won only if all ${d.legs} picks finish under ${d.line} corners.`));
+  d.weeks.slice().reverse().forEach(x=>{const c=el("span","chip "+x.status,day(x.picks[0].date,{day:"numeric",month:"short"})+(x.status==="won"?" +1":""));c.title=LABEL[x.status];strip.append(c)});
+  d.weeks.forEach(x=>{const dt=el("details"),sm=el("summary");
+    sm.append(el("span",null,"Round of "+day(x.picks[0].date,{day:"numeric",month:"long"})),el("span",null,LABEL[x.status]));dt.append(sm);
+    x.picks.forEach(p=>{const r=el("div","row");r.append(el("span",null,p.home+" v "+p.away),cmark(p));dt.append(r)});rounds.append(dt)});
+  const bt=d.backtest;
+  if(bt)$("#c-bt").textContent=`Replaying this rule over ${bt.weeks} past weeks since ${bt.since}: all ${d.legs} picks finished under ${d.line} corners in ${bt.model_weeks_won_pct}% of weeks; ${d.legs} random games would manage ${bt.random_weeks_won_pct}%. Per game, the picks hit ${bt.model_leg_hit_pct}% against ${bt.other_games_hit_pct}% for the other games. The rule was found on this same data, so this flatters it a little.`;
+}
+(async()=>{try{const r=await fetch("corners.json",{cache:"no-store"});if(!r.ok)throw 0;renderCorners(await r.json())}
+ catch(e){$("#c-now").replaceChildren(el("p","note","No corner picks yet, or the data couldn't load. Check back after the next update."))}})();
 </script>
 </body>
 </html>
