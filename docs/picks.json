@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-21T00:04:18Z",
+  "generated": "2026-11-21T14:21:15Z",
   "model": "baseline-v2",
   "line": 4.5,
   "picks_per_week": 5,
@@ -78,6 +78,108 @@
           "result": "pending",
           "score": null
         }
+      ],
+      "games": [
+        {
+          "date": "2026-11-21",
+          "time": "12:30",
+          "home": "Man City",
+          "away": "Fulham",
+          "p_under": 0.8554,
+          "picked": false,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-21",
+          "time": "15:00",
+          "home": "Aston Villa",
+          "away": "Sunderland",
+          "p_under": 0.8418,
+          "picked": false,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-21",
+          "time": "15:00",
+          "home": "Bournemouth",
+          "away": "Nott'm Forest",
+          "p_under": 0.8585,
+          "picked": true,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-21",
+          "time": "15:00",
+          "home": "Chelsea",
+          "away": "Leeds",
+          "p_under": 0.8673,
+          "picked": true,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-21",
+          "time": "15:00",
+          "home": "Coventry",
+          "away": "Crystal Palace",
+          "p_under": 0.8177,
+          "picked": false,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-21",
+          "time": "15:00",
+          "home": "Tottenham",
+          "away": "Ipswich",
+          "p_under": 0.8399,
+          "picked": false,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-21",
+          "time": "17:30",
+          "home": "Newcastle",
+          "away": "Arsenal",
+          "p_under": 0.8783,
+          "picked": true,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-22",
+          "time": "14:00",
+          "home": "Hull",
+          "away": "Brighton",
+          "p_under": 0.8636,
+          "picked": true,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-22",
+          "time": "16:30",
+          "home": "Liverpool",
+          "away": "Man United",
+          "p_under": 0.8266,
+          "picked": false,
+          "result": "pending",
+          "score": null
+        },
+        {
+          "date": "2026-11-23",
+          "time": "20:00",
+          "home": "Brentford",
+          "away": "Everton",
+          "p_under": 0.8683,
+          "picked": true,
+          "result": "pending",
+          "score": null
+        }
       ]
     },
     {
@@ -136,6 +238,108 @@
           "p_under": 0.8071,
           "result": "under",
           "score": "1-2"
+        }
+      ],
+      "games": [
+        {
+          "date": "2026-11-06",
+          "time": "20:00",
+          "home": "Everton",
+          "away": "Coventry",
+          "p_under": 0.8695,
+          "picked": false,
+          "result": "under",
+          "score": "3-1"
+        },
+        {
+          "date": "2026-11-07",
+          "time": "12:30",
+          "home": "Leeds",
+          "away": "Tottenham",
+          "p_under": 0.8015,
+          "picked": false,
+          "result": "under",
+          "score": "1-0"
+        },
+        {
+          "date": "2026-11-07",
+          "time": "15:00",
+          "home": "Arsenal",
+          "away": "Hull",
+          "p_under": 0.8587,
+          "picked": false,
+          "result": "under",
+          "score": "1-0"
+        },
+        {
+          "date": "2026-11-07",
+          "time": "15:00",
+          "home": "Fulham",
+          "away": "Newcastle",
+          "p_under": 0.8293,
+          "picked": false,
+          "result": "under",
+          "score": "1-1"
+        },
+        {
+          "date": "2026-11-07",
+          "time": "17:30",
+          "home": "Nott'm Forest",
+          "away": "Man City",
+          "p_under": 0.8182,
+          "picked": false,
+          "result": "under",
+          "score": "3-1"
+        },
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "home": "Brighton",
+          "away": "Brentford",
+          "p_under": 0.827,
+          "picked": true,
+          "result": "under",
+          "score": "2-0"
+        },
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "home": "Crystal Palace",
+          "away": "Liverpool",
+          "p_under": 0.831,
+          "picked": true,
+          "result": "under",
+          "score": "1-3"
+        },
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "home": "Ipswich",
+          "away": "Bournemouth",
+          "p_under": 0.8071,
+          "picked": true,
+          "result": "under",
+          "score": "1-2"
+        },
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "home": "Sunderland",
+          "away": "Chelsea",
+          "p_under": 0.862,
+          "picked": true,
+          "result": "under",
+          "score": "1-0"
+        },
+        {
+          "date": "2026-11-08",
+          "time": "16:30",
+          "home": "Man United",
+          "away": "Aston Villa",
+          "p_under": 0.8338,
+          "picked": true,
+          "result": "over",
+          "score": "4-4"
         }
       ]
     }
