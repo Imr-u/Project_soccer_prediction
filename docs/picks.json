@@ -1,23 +1,23 @@
 {
-  "generated": "2026-11-22T14:12:58Z",
+  "generated": "2026-11-23T17:34:31Z",
   "model": "baseline-v2",
   "line": 4.5,
   "picks_per_week": 5,
   "summary": {
     "weeks_won": 0,
-    "weeks_lost": 1,
-    "weeks_pending": 1,
+    "weeks_lost": 2,
+    "weeks_pending": 0,
     "weeks_void": 0,
     "win_rate": 0.0
   },
   "backtest": {
     "since": "2022-2023",
-    "weeks": 152,
+    "weeks": 153,
     "half_life_days": 90,
     "shrink_k": 5,
-    "model_weeks_won_pct": 48.0,
-    "random_weeks_won_pct": 41.3,
-    "model_picks_under_pct": 85.3,
+    "model_weeks_won_pct": 47.7,
+    "random_weeks_won_pct": 41.2,
+    "model_picks_under_pct": 85.2,
     "random_picks_under_pct": 83.7
   },
   "weeks": [
@@ -25,7 +25,7 @@
       "id": "2026-11-21",
       "model": "baseline-v2",
       "announced_at": "2026-11-20T15:00:07Z",
-      "status": "pending",
+      "status": "lost",
       "games_total": 10,
       "picks": [
         {
@@ -35,8 +35,8 @@
           "away": "Arsenal",
           "exp_goals": 2.594,
           "p_under": 0.8783,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "2-2"
         },
         {
           "date": "2026-11-23",
@@ -55,8 +55,8 @@
           "away": "Leeds",
           "exp_goals": 2.67,
           "p_under": 0.8673,
-          "result": "pending",
-          "score": null
+          "result": "over",
+          "score": "1-4"
         },
         {
           "date": "2026-11-22",
@@ -65,8 +65,8 @@
           "away": "Brighton",
           "exp_goals": 2.695,
           "p_under": 0.8636,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "2-0"
         },
         {
           "date": "2026-11-21",
@@ -75,8 +75,8 @@
           "away": "Nott'm Forest",
           "exp_goals": 2.73,
           "p_under": 0.8585,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "2-0"
         }
       ],
       "games": [
@@ -87,8 +87,8 @@
           "away": "Fulham",
           "p_under": 0.8554,
           "picked": false,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "1-1"
         },
         {
           "date": "2026-11-21",
@@ -97,8 +97,8 @@
           "away": "Sunderland",
           "p_under": 0.8418,
           "picked": false,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "0-0"
         },
         {
           "date": "2026-11-21",
@@ -107,8 +107,8 @@
           "away": "Nott'm Forest",
           "p_under": 0.8585,
           "picked": true,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "2-0"
         },
         {
           "date": "2026-11-21",
@@ -117,8 +117,8 @@
           "away": "Leeds",
           "p_under": 0.8673,
           "picked": true,
-          "result": "pending",
-          "score": null
+          "result": "over",
+          "score": "1-4"
         },
         {
           "date": "2026-11-21",
@@ -127,8 +127,8 @@
           "away": "Crystal Palace",
           "p_under": 0.8177,
           "picked": false,
-          "result": "pending",
-          "score": null
+          "result": "over",
+          "score": "3-2"
         },
         {
           "date": "2026-11-21",
@@ -137,8 +137,8 @@
           "away": "Ipswich",
           "p_under": 0.8399,
           "picked": false,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "2-0"
         },
         {
           "date": "2026-11-21",
@@ -147,8 +147,8 @@
           "away": "Arsenal",
           "p_under": 0.8783,
           "picked": true,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "2-2"
         },
         {
           "date": "2026-11-22",
@@ -157,8 +157,8 @@
           "away": "Brighton",
           "p_under": 0.8636,
           "picked": true,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "2-0"
         },
         {
           "date": "2026-11-22",
@@ -167,8 +167,8 @@
           "away": "Man United",
           "p_under": 0.8266,
           "picked": false,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "4-0"
         },
         {
           "date": "2026-11-23",

@@ -1,29 +1,29 @@
 {
-  "generated": "2026-11-22T14:12:58Z",
+  "generated": "2026-11-23T17:34:31Z",
   "model": "corners-v1",
   "line": 11.5,
   "legs": 3,
   "summary": {
-    "weeks_won": 0,
+    "weeks_won": 1,
     "weeks_lost": 0,
-    "weeks_pending": 1,
+    "weeks_pending": 0,
     "weeks_void": 0,
-    "win_rate": null
+    "win_rate": 1.0
   },
   "backtest": {
     "since": "2019-2020",
-    "weeks": 250,
-    "model_weeks_won_pct": 33.6,
+    "weeks": 251,
+    "model_weeks_won_pct": 33.9,
     "random_weeks_won_pct": 28.5,
-    "model_leg_hit_pct": 69.5,
-    "other_games_hit_pct": 64.3
+    "model_leg_hit_pct": 69.6,
+    "other_games_hit_pct": 64.2
   },
   "weeks": [
     {
       "id": "2026-11-21",
       "model": "corners-v1",
       "announced_at": "2026-11-21T14:13:49Z",
-      "status": "pending",
+      "status": "won",
       "games_total": 10,
       "picks": [
         {
@@ -32,8 +32,8 @@
           "home": "Bournemouth",
           "away": "Nott'm Forest",
           "p_over25": 0.516,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 10
         },
         {
           "date": "2026-11-21",
@@ -41,8 +41,8 @@
           "home": "Chelsea",
           "away": "Leeds",
           "p_over25": 0.5333,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 5
         },
         {
           "date": "2026-11-21",
@@ -50,8 +50,8 @@
           "home": "Aston Villa",
           "away": "Sunderland",
           "p_over25": 0.5346,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 9
         }
       ],
       "games": [
@@ -62,8 +62,8 @@
           "away": "Fulham",
           "p_over25": 0.6404,
           "picked": false,
-          "result": "pending",
-          "corners": null
+          "result": "over",
+          "corners": 14
         },
         {
           "date": "2026-11-21",
@@ -72,8 +72,8 @@
           "away": "Sunderland",
           "p_over25": 0.5346,
           "picked": true,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 9
         },
         {
           "date": "2026-11-21",
@@ -82,8 +82,8 @@
           "away": "Nott'm Forest",
           "p_over25": 0.516,
           "picked": true,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 10
         },
         {
           "date": "2026-11-21",
@@ -92,8 +92,8 @@
           "away": "Leeds",
           "p_over25": 0.5333,
           "picked": true,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 5
         },
         {
           "date": "2026-11-21",
@@ -102,8 +102,8 @@
           "away": "Crystal Palace",
           "p_over25": 0.5632,
           "picked": false,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 10
         },
         {
           "date": "2026-11-21",
@@ -112,8 +112,8 @@
           "away": "Ipswich",
           "p_over25": 0.599,
           "picked": false,
-          "result": "pending",
-          "corners": null
+          "result": "over",
+          "corners": 14
         },
         {
           "date": "2026-11-21",
@@ -122,8 +122,8 @@
           "away": "Arsenal",
           "p_over25": 0.5517,
           "picked": false,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 9
         },
         {
           "date": "2026-11-22",
@@ -132,8 +132,8 @@
           "away": "Brighton",
           "p_over25": 0.5718,
           "picked": false,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 7
         },
         {
           "date": "2026-11-22",
@@ -142,8 +142,8 @@
           "away": "Man United",
           "p_over25": 0.6404,
           "picked": false,
-          "result": "pending",
-          "corners": null
+          "result": "over",
+          "corners": 20
         },
         {
           "date": "2026-11-23",
