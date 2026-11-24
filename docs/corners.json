@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-23T17:34:31Z",
+  "generated": "2026-11-24T17:05:44Z",
   "model": "corners-v1",
   "line": 11.5,
   "legs": 3,
@@ -152,8 +152,8 @@
           "away": "Everton",
           "p_over25": 0.5452,
           "picked": false,
-          "result": "pending",
-          "corners": null
+          "result": "under",
+          "corners": 9
         }
       ]
     }

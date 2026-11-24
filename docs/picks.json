@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-23T17:34:31Z",
+  "generated": "2026-11-24T17:05:44Z",
   "model": "baseline-v2",
   "line": 4.5,
   "picks_per_week": 5,
@@ -45,8 +45,8 @@
           "away": "Everton",
           "exp_goals": 2.664,
           "p_under": 0.8683,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "4-0"
         },
         {
           "date": "2026-11-21",
@@ -177,8 +177,8 @@
           "away": "Everton",
           "p_under": 0.8683,
           "picked": true,
-          "result": "pending",
-          "score": null
+          "result": "under",
+          "score": "4-0"
         }
       ]
     },
