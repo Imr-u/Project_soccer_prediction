@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Safe Picks · weekly Premier League picks</title>
-<link rel="icon" type="image/png" href="img/logo.svg">
+<link rel="icon" type="image/png" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
@@ -55,6 +55,7 @@ a{color:inherit;text-decoration:none}
 details{border-top:1px solid var(--line);padding:10px 0}details:first-of-type{border-top:0}
 summary{cursor:pointer;display:flex;justify-content:space-between;font-weight:600}
 .row{display:flex;justify-content:space-between;padding-top:6px;color:var(--mut);font-size:.9rem}
+.sub{font-size:.72rem;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;margin:0 0 10px}.sub.second{border-top:1px solid var(--line);padding-top:16px;margin-top:18px}
 .note{color:var(--mut);font-size:.9rem}.step{display:flex;gap:10px;margin:8px 0;color:var(--mut)}.step b{color:var(--g)}
 footer{color:var(--mut);font-size:.8rem;margin-top:24px}
 [hidden]{display:none!important}
@@ -80,11 +81,11 @@ footer{color:var(--mut);font-size:.8rem;margin-top:24px}
 </head>
 <body>
 <aside class="side">
-  <a class="logo" href="#home"><img src="img/logo.svg" alt=""><span>Safe<b>Picks</b></span></a>
-  <nav class="nav"><a href="#home" data-p="home">Home</a><a href="#picks" data-p="picks">Picks</a><a href="#corners" data-p="corners">Corners</a></nav>
+  <a class="logo" href="#home"><img src="img/logo.png" alt=""><span>Safe<b>Picks</b></span></a>
+  <nav class="nav"><a href="#home" data-p="home">Home</a><a href="#picks" data-p="picks">Goals</a><a href="#corners" data-p="corners">Corners</a></nav>
 </aside>
 <div class="wrap">
-  <div class="top"><a class="mlogo" href="#home" aria-label="Safe Picks home"><img src="img/logo.svg" alt="Safe Picks"></a><input id="q" type="search" placeholder="Search for a team…" aria-label="Search for a team"><button id="theme" aria-label="Switch light or dark">◐</button></div>
+  <div class="top"><a class="mlogo" href="#home" aria-label="Safe Picks home"><img src="img/logo.png" alt="Safe Picks"></a><input id="q" type="search" placeholder="Search for a team…" aria-label="Search for a team"><button id="theme" aria-label="Switch light or dark">◐</button></div>
 
   <section id="home">
     <div class="hero">
@@ -95,7 +96,7 @@ footer{color:var(--mut);font-size:.8rem;margin-top:24px}
     </div>
     <div class="grid">
       <div class="card"><h2 id="up-title">This week's matches</h2><div id="upcoming"><p class="note">Loading…</p></div></div>
-      <div><div class="card"><h2>Model record</h2><div id="record"></div></div>
+      <div><div class="card"><h2>Model record</h2><div class="sub">Goals</div><div id="record"></div><div class="sub second">Corners</div><div id="record-c"><p class="note">Loading…</p></div></div>
       <div class="card"><h2>How it works</h2>
         <div class="step"><b>1</b><span>The model rates each team's goals scored and conceded.</span></div>
         <div class="step"><b>2</b><span>It ranks every game by chance of finishing under 4.5 goals.</span></div>
@@ -211,8 +212,15 @@ function renderCorners(d){
   const bt=d.backtest;
   if(bt)$("#c-bt").textContent=`Replaying this rule over ${bt.weeks} past weeks since ${bt.since}: all ${d.legs} picks finished under ${d.line} corners in ${bt.model_weeks_won_pct}% of weeks; ${d.legs} random games would manage ${bt.random_weeks_won_pct}%. Per game, the picks hit ${bt.model_leg_hit_pct}% against ${bt.other_games_hit_pct}% for the other games. The rule was found on this same data, so this flatters it a little.`;
 }
-(async()=>{try{const r=await fetch("corners.json",{cache:"no-store"});if(!r.ok)throw 0;renderCorners(await r.json())}
- catch(e){$("#c-now").replaceChildren(el("p","note","No corner picks yet, or the data couldn't load. Check back after the next update."))}})();
+function renderCornerRecord(d){
+  const box=$("#record-c"),won=d.summary.weeks_won,lost=d.summary.weeks_lost,wait=d.summary.weeks_pending,fin=won+lost,r=fin?won/fin:0,C=2*Math.PI*40;box.replaceChildren();
+  const wrap=el("div","ring");
+  wrap.innerHTML=`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="var(--line)" stroke-width="10"/><circle cx="50" cy="50" r="40" fill="none" stroke="var(--g)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C*r} ${C}" transform="rotate(-90 50 50)"/><text x="50" y="56" text-anchor="middle" fill="currentColor" font-size="20" font-weight="800">${fin?pc(r)+"%":"–"}</text></svg>`;
+  const info=el("div");info.append(el("div","n",`${won} won`),el("p",null,`${lost} lost · ${wait} in progress`),el("p",null,`Weeks where all ${d.legs} picks stayed under ${d.line} corners`));
+  wrap.append(info);box.append(wrap);
+}
+(async()=>{try{const r=await fetch("corners.json",{cache:"no-store"});if(!r.ok)throw 0;const cd=await r.json();renderCorners(cd);renderCornerRecord(cd)}
+ catch(e){$("#c-now").replaceChildren(el("p","note","No corner picks yet, or the data couldn't load. Check back after the next update."));$("#record-c").replaceChildren(el("p","note","No corner record yet."))}})();
 </script>
 </body>
 </html>
